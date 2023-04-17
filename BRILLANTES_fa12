@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>FA12_Brillantes</title>
+	</head>
+	<style>
+		table, th, td {
+		  border:1px solid black;
+		}
+		
+	</style>
+	
+	<body>
+		<p>[Enter a number between 2 and 10]</p>
+		
+		<p>
+			<input type="number" id="fnum" name="fnum"> by
+			<input type="number" id="lnum" name="lnum">
+		</p>
+			
+		
+		<button onclick="generateTable()">Click here when ready!</button><br><br>
+		
+		<table id="table"> </table>
+	
+			<script>
+			function generateTable() {
+				var fnum = parseInt(document.getElementById("fnum").value);
+				var lnum = parseInt(document.getElementById("lnum").value);
+				var table = document.getElementById("table");
+
+				if (fnum < 2 || fnum > 10 || lnum < 2 || lnum > 10) {
+					alert("Please enter numbers between 2 and 10");
+					return;
+				}
+
+				var value = "<tr><td></td>";	
+				
+				for (var i = 1; i <= fnum; i++) {
+					value += "<tr><td>" + i + "</td>";
+					for (var j = 2; j <= lnum; j++) {
+						value += "<td>" + (j * i) + "</td>";
+					} 
+					value += "</tr>";
+				}
+
+				table.innerHTML = value;
+			}
+		</script>
+	</body>
+</html>
+
