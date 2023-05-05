@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>AA1_Brillantes</title>
+	</head>
+	
+	<body>
+		<script>
+			//User input
+			var seq = prompt("Input an mRNA sequence:");
+			seq = seq.toUpperCase()
+			var sIndex = seq.indexOf("AUG");
+			
+			//to test if the given input only has the letter A,U,G, and C
+			let regex = /^[AUGC]+$/;
+			
+			if(regex.test(seq)===false){
+			    alert("Not a Genetic Code");
+			    throw("Invalid Code");
+			}
+				
+			
+			//dividing the mRNA sequence
+			let aa = [];
+			let codon = seq.slice(sIndex, sIndex + 3);
+			aa.push(codon);
+			var part = ((seq.length - sIndex)/3);
+			
+			//determining the starting codon of the mRNA sequence
+			if (sIndex  === -1){
+				alert("mRNA lacks starting codon.");
+			}
+				
+			//If starting codon is found, it will identify the amino acids/aa until stop codon
+			else{
+				document.write("[");
+				
+				
+				//stop codons
+				for (let i = 0; i < part; i++) {
+					sIndex += 3;
+					
+					if (aa[i] != "UAA" && aa[i] != "UAG" && aa[i] != "UGA") {
+					
+						if (i != part - 1) {
+							document.write(' "' + aa[i] + '" ,');
+							codon = seq.slice(sIndex, sIndex + 3);
+							aa.push(codon);
+							
+						} else {
+							document.write(' "' + aa[i] + '" ]');
+						}
+						
+					} else if (aa[i] === "UAA" || aa[i] === "UAG" || aa[i] === "UGA") {
+						document.write(' "' + aa[i] + '" ]');
+						break;
+					}
+				}
+				
+				//printing which aminoacids
+				for (let i = 0; i < part; i++) {
+				
+					if (aa[i] === "AUG") {
+						document.write("<br>" + aa[i] + " --> " + "Met");
+						
+					} 
+					else if (aa[i] === "UUU" || aa[i] === "UUC") {
+						document.write("<br>" + aa[i] + " --> " + "Phe");
+						
+					}
+					 else if (aa[i] === "UUA" || aa[i] === "UUG" || aa[i] === "CUU" || aa[i] === "CUC" || aa[i] === "CUA" || aa[i] === "CUG") {
+						document.write("<br>" + aa[i] + " --> " + "leu");
+						} 
+						else if (aa[i] === "AUU" || aa[i] === "AUC" || aa[i] === "AUA") {
+						document.write("<br>" + aa[i] + " --> " + "Ile");
+							} else if (aa[i] === "GUU" || aa[i] === "GUC" || aa[i] === "GUA" || aa[i] === "GUG") {
+						document.write("<br>" + aa[i] + " --> " + "Val");
+						
+					} else if (aa[i] === "UCU" || aa[i] === "UCC" || aa[i] === "UCA" || aa[i] === "UCG" || aa[i] === "AGU" || aa[i] === "AGC") {
+						document.write("<br>" + aa[i] + " --> " + "Ser");
+						
+					} else if (aa[i] === "CCU" || aa[i] === "CCC" || aa[i] === "CCA" || aa[i] === "CCG") {
+						document.write("<br>" + aa[i] + " --> " + "Pro");
+						
+					} else if (aa[i] === "ACU" || aa[i] === "ACC" || aa[i] === "ACA" || aa[i] === "ACG") {
+						document.write("<br>" + aa[i] + " --> " + "Thr");
+						
+					} else if (aa[i] === "GCU" || aa[i] === "GCC" || aa[i] === "GCA" || aa[i] === "GCG") {
+						document.write("<br>" + aa[i] + " --> " + "Ala");
+						
+					} else if (aa[i] === "UAU" || aa[i] === "UAC") {
+						document.write("<br>" + aa[i] + " --> " + "Tyr");
+						
+					} else if (aa[i] === "CAU" || aa[i] === "CAC") {
+						document.write("<br>" + aa[i] + " --> " + "His");
+						
+					} else if (aa[i] === "CAA" || aa[i] === "CAG") {
+						document.write("<br>" + aa[i] + " --> " + "Gln");
+						
+					} else if (aa[i] === "AAU" || aa[i] === "AAC") {
+						document.write("<br>" + aa[i] + " --> " + "Asn");
+						
+					} else if (aa[i] === "AAA" || aa[i] === "AAG") {
+						document.write("<br>" + aa[i] + " --> " + "Lys");
+						
+					} else if (aa[i] === "GAU" || aa[i] === "GAC") {
+						document.write("<br>" + aa[i] + " --> " + "Asp");
+						
+					} else if (aa[i] === "GAA" || aa[i] === "GAG") {
+						document.write("<br>" + aa[i] + " --> " + "Glu");
+						
+					} else if (aa[i] === "UGU" || aa[i] === "UGC") {
+						document.write("<br>" + aa[i] + " --> " + "Cys");
+						
+					} else if (aa[i] === "UGG") {
+						document.write("<br>" + aa[i] + " --> " + "Trp");
+						
+					} else if (aa[i] === "CGU" || aa[i] === "CGC" || aa[i] === "CGA" || aa[i] === "CGG" || aa[i] === "AGA" || aa[i] === "AGG") {
+						document.write("<br>" + aa[i] + " --> " + "Arg");
+						
+					} else if (aa[i] === "GGU" || aa[i] === "GGC" || aa[i] === "GGA" || aa[i] === "GGG") {
+						document.write("<br>" + aa[i] + " --> " + "Gly");
+						
+					} else {
+						document.write("<br>" + aa[i] + " --> " + "STOP");
+						break;
+					}
+				}
+			}
+		</script>
+	</body>
+</html>
