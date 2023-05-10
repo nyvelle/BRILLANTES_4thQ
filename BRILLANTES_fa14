@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>FA14_Brillantes</title>
+		<style>
+		fieldset {
+			margin-bottom: 20px;
+			border-color: white;
+			border-radius: 10px;
+			padding: 10px;
+			width: 50%;
+			margin: auto;
+			color: #333;
+			font-family: 'Raleway', sans-serif;
+			background-color: white;
+			box-shadow: 0 7px 30px rgba(62, 9, 11, .3);
+		}
+		legend {
+			font-size: 24px;
+			font-weight: bold;
+			padding: 10px;
+			color: purple;
+			background-color:#FBC4C8  ;
+			padding: 5px 10px;
+			border-radius: 10px;
+			text-align: center;
+			padding-left:30px;
+			padding-right:30px;
+		}		
+		h1{
+			text-align: center;
+			color: white;
+			font-family: 'Raleway', sans-serif;
+		}
+		body {
+			background: radial-gradient(ellipse farthest-corner at left top, #f35464 30%, #841F4B 100%);
+			height: 200vh;
+			color: #333;
+		}		
+		div{
+			margin-bottom: 20px;
+			border-color: white;
+			border-radius: 10px;
+			padding: 10px;
+			width: 50%;
+			margin: auto;
+			color: #333;
+			font-family: 'Raleway', sans-serif;
+			background-color: white;
+			box-shadow: 0 7px 30px rgba(62, 9, 11, .3);
+			margin-top: 50px;
+		}		
+		input[type=text], input[type=password], select, textarea {
+			width: 100%;
+			padding: 12px;
+			border: 2px solid #ccc;
+			border-radius: 4px;
+			box-sizing: border-box;
+			margin-top: 6px;
+			margin-bottom: 16px;
+			resize: vertical;
+			outline: none;
+		}
+		input[type=email] {
+			width: 100%;
+			padding: 12px;
+			border: 2px solid #ccc;
+			border-radius: 4px;
+			box-sizing: border-box;
+			margin-top: 6px;
+			margin-bottom: 16px;
+			resize: vertical;
+			outline: none;
+		}
+		input[type=submit], input[type=reset] {
+			background-color: #FBC4C8;
+			color: #333;
+			padding: 12px 20px;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+			float: left;
+			margin: 10px;
+			font-family: 'Raleway', sans-serif;
+		}
+		input[type=submit]:hover, input[type=reset]:hover {
+			background-color: #D5AEB1 ;
+		}
+		
+		</style>
+	</head>
+	<body>
+		<h1>Sign-up Form</h1>
+		<form id="signup-form">
+			<fieldset>
+				<legend>Personal Information</legend>
+				<label for="name">Name:</label>
+				<input type="text" id="name" name="name" onfocus="focusFunction(this)" onblur="blurFunction(this)" required>
+
+				<label for="username">Username:</label>
+				<input type="text" id="username" name="username" onfocus="focusFunction(this)" onblur="blurFunction(this)" required>
+
+				<label for="gender">Gender:</label>
+				<select id="gender" name="gender">
+					<option value="male">Male</option>
+					<option value="female">Female</option>
+					<option value="prefer-not-to-mention">Prefer not to mention</option>
+				</select>
+
+				<label for="password">Password:</label>
+				<input type="password" id="password" name="password" onfocus="focusFunction(this)" onblur="blurFunction(this)" required>
+
+				<label for="email">Email Address:</label>
+				<input type="email" id="email" name="email" onfocus="focusFunction(this)" onblur="blurFunction(this)" required>
+
+				<label for="address">Address:</label>
+				<textarea id="address" name="address" onfocus="focusFunction(this)" onblur="blurFunction(this)" rows="4" cols="50"></textarea>
+
+				<label for="interest">Interests:</label>
+				<textarea id="interest" name="interest" onfocus="focusFunction(this)" onblur="blurFunction(this)" rows="4" cols="50"></textarea>
+				
+				<input type="submit" onclick="displayUserInfo(); return false;">
+				<input type="reset" id="reset" value="Reset">
+			</fieldset>
+		
+			<!--output-->
+			<div id ="output"></div>
+
+			
+		</form>
+		
+		<script>
+			function focusFunction(inputElement) {
+				inputElement.style.border = "2px solid #ccc";
+			}
+
+			function blurFunction(inputElement) {
+				if (inputElement.value === "") {
+					inputElement.style.border = "2px solid red";				
+				} 
+				
+				else if (inputElement.value !== ""){
+					inputElement.style.border = "2px solid green";
+				}
+			}
+			
+			function displayUserInfo(){
+				var a = document.getElementById("name").value;
+				var b = document.getElementById("username").value;
+				var c = document.getElementById("gender").value;
+				var d = document.getElementById("password").value;
+				var e = document.getElementById("email").value; 
+				var f = document.getElementById("address").value; 
+				var g = document.getElementById("interest").value;
+				
+				var userInfo = 	"User's Information" + "<br>"+"<br>"+
+								"Name: " + a + "<br>" +
+								"Username: " + b + "<br>" +
+								"Gender: " + c + "<br>" +
+								"Password: " + d + "<br>" +
+								"Email: " + e + "<br>" +
+								"Address: " + f + "<br>" +
+								"Interest: " + g;
+				if (var userInfo === ""){
+					document.getElementById("output").innerHTML = "";
+				}
+				
+				else {
+					document.getElementById("output").innerHTML = userInfo;
+				}
+			}
+		</script>
+	</body>
+</html>
