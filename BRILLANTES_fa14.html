@@ -91,7 +91,7 @@
 	</head>
 	<body>
 		<h1>Sign-up Form</h1>
-		<form id="signup-form">
+		<form id="signup-form" onsubmit="return displayUserInfo();">
 			<fieldset>
 				<legend>Personal Information</legend>
 				<label for="name">Name:</label>
@@ -119,8 +119,8 @@
 				<label for="interest">Interests:</label>
 				<textarea id="interest" name="interest" onfocus="focusFunction(this)" onblur="blurFunction(this)" rows="4" cols="50"></textarea>
 				
-				<input type="submit" onclick="displayUserInfo(); return false;">
-				<input type="reset" id="reset" value="Reset">
+				<input type="submit">
+				<input type="reset" id="reset" value="Reset" onclick="resetFunction()">
 			</fieldset>
 		
 			<!--output-->
@@ -131,15 +131,17 @@
 		
 		<script>
 			function focusFunction(inputElement) {
-				inputElement.style.border = "2px solid #ccc";
+				if (inputElement.value === "") {
+					inputElement.style.border = "2px solid #ccc";
+				} else {
+					inputElement.style.border = "2px solid green";
+				}
 			}
 
 			function blurFunction(inputElement) {
 				if (inputElement.value === "") {
-					inputElement.style.border = "2px solid red";				
-				} 
-				
-				else if (inputElement.value !== ""){
+					inputElement.style.border = "2px solid red";
+				} else {
 					inputElement.style.border = "2px solid green";
 				}
 			}
@@ -161,14 +163,15 @@
 								"Email: " + e + "<br>" +
 								"Address: " + f + "<br>" +
 								"Interest: " + g;
-				if (var userInfo === ""){
-					document.getElementById("output").innerHTML = "";
-				}
-				
-				else {
-					document.getElementById("output").innerHTML = userInfo;
-				}
+								
+				document.getElementById("output").innerHTML = userInfo;
+				return false;
 			}
+			
+			function resetFunction(){
+				document.getElementById("output").innerHTML = "";
+			}		
+			
 		</script>
 	</body>
 </html>
