@@ -101,7 +101,8 @@
 				<input type="text" id="username" name="username" onfocus="focusFunction(this)" onblur="blurFunction(this)" required>
 
 				<label for="gender">Gender:</label>
-				<select id="gender" name="gender">
+				<select id="gender" name="gender" onfocus="focusFunction(this)" onblur="blurFunction(this)" required>
+					<option value="" disabled selected>Select gender</option>
 					<option value="male">Male</option>
 					<option value="female">Female</option>
 					<option value="prefer-not-to-mention">Prefer not to mention</option>
@@ -168,9 +169,23 @@
 				return false;
 			}
 			
-			function resetFunction(){
+			function resetFunction() {
 				document.getElementById("output").innerHTML = "";
-			}		
+				var inputElements = document.getElementsByTagName("input");
+				var textareaElements = document.getElementsByTagName("textarea");
+				var genderSelect = document.getElementById("gender");
+
+				for (var i = 0; i < inputElements.length; i++) {
+					inputElements[i].style.border = "2px solid #ccc";
+				}
+
+				for (var i = 0; i < textareaElements.length; i++) {
+					textareaElements[i].style.border = "2px solid #ccc";
+				}
+
+				genderSelect.style.border = "2px solid #ccc"; // Reset the border color of gender select
+				genderSelect.value = ""; // Reset the gender select to the blank option
+			}	
 			
 		</script>
 	</body>
